@@ -73,7 +73,7 @@ class Navbar extends Component {
             "aria-describedby":"message-id"
           }}
           action={[
-            <IconButton onClick={this.closeSnackBar} >
+            <IconButton onClick={this.closeSnackBar} color="inherit" >
               <CloseIcon />
             </IconButton>
           ]}

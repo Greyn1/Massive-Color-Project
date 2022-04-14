@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import Navbar from "./Navbar";
 import PaletteFooter from './PaletteFooter';
+import { Link } from 'react-router-dom';
 import './Palette.css';
 
 class SingleColorPalette extends Component {
@@ -14,10 +15,10 @@ class SingleColorPalette extends Component {
         this.changeFormat = this.changeFormat.bind(this);
     }
 
-    gatherShades(palette, colorToFilterBy){
-        let shades =[];
+    gatherShades(palette, colorToFilterBy) {
+        let shades = [];
         let allColors = palette.colors;
-        for(let key in allColors){
+        for (let key in allColors) {
             shades = shades.concat(
                 allColors[key].filter(color => color.id === colorToFilterBy)
             );
@@ -30,22 +31,25 @@ class SingleColorPalette extends Component {
             format: val
         })
     }
-    
+
     render() {
-        const {format} = this.state;
-        const {paletteName, emoji} = this.props.palette;
-        const colorBoxes = this._shades.map( color => (
-            <ColorBox 
-            key={color.id}
-            background={color[format]}
-            name={color.name}
-            showLink={false} />
+        const { format } = this.state;
+        const { paletteName, emoji, id } = this.props.palette;
+        const colorBoxes = this._shades.map(color => (
+            <ColorBox
+                key={color.name}
+                background={color[format]}
+                name={color.name}
+                showLink={false} />
         ));
         return (
-            <div className='palette' >
-            <Navbar handleChange={this.changeFormat} showSlider={false} />
+            <div className='SingleColorPalette palette' >
+                <Navbar handleChange={this.changeFormat} showSlider={false} />
                 <div className='palette-colors' >
                     {colorBoxes}
+                    <div className='go-back ColorBox' >
+                        <Link to={`/palette/${id}`} className='back-button' >GO BACK</Link>
+                    </div>
                 </div>
                 <PaletteFooter paletteName={paletteName} emoji={emoji} />
             </div>

@@ -14,7 +14,7 @@ class Navbar extends Component {
     super(props);
     this.state = {
       format: "hex",
-      open:false
+      open: false
     };
     this.handleFormatChange = this.handleFormatChange.bind(this);
     this.closeSnackBar = this.closeSnackBar.bind(this);
@@ -23,37 +23,39 @@ class Navbar extends Component {
   handleFormatChange(e) {
     this.setState({
       format: e.target.value,
-      open : true
+      open: true
     });
     this.props.handleChange(e.target.value);
   }
 
-  closeSnackBar(){
+  closeSnackBar() {
     this.setState({
-      open:false
+      open: false
     });
   }
 
   render() {
-    const { level, changeLevel } = this.props;
+    const { level, changeLevel, showSlider } = this.props;
     const { format, open } = this.state;
     return (
       <header className='Navbar'>
         <div className='logo'>
           <Link to={`/`} >Reactcolorpicker</Link>
         </div>
-        <div className='slider-container'>
-          <span>Level: {level}</span>
-          <div className='slider'>
-            <Slider
-              defaultValue={level}
-              min={100}
-              max={900}
-              step={100}
-              onAfterChange={changeLevel}
-            />
+        {showSlider &&
+          <div className='slider-container'>
+            <span>Level: {level}</span>
+            <div className='slider'>
+              <Slider
+                defaultValue={level}
+                min={100}
+                max={900}
+                step={100}
+                onAfterChange={changeLevel}
+              />
+            </div>
           </div>
-        </div>
+        }
         <div className="select-container" >
           <Select
             value={format}
@@ -66,12 +68,12 @@ class Navbar extends Component {
           </Select>
         </div>
         <Snackbar
-          anchorOrigin={{vertical:"bottom", horizontal:"left"}}
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
           open={open}
           autoHideDuration={3000}
           message={<span id="message-id" >Format Changed to {format.toUpperCase()}</span>}
           ContentProps={{
-            "aria-describedby":"message-id"
+            "aria-describedby": "message-id"
           }}
           action={[
             <IconButton onClick={this.closeSnackBar} color="inherit" >

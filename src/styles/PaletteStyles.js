@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 export default {
     Palette: {
         height: "100vh",
@@ -37,6 +39,18 @@ export default {
             textDecoration: "none",
             cursor: "pointer",
             paddingTop: "5.5px"
+        },
+        [sizes.down("xl")]: {
+            width: "25%",
+            height: "33.333%"
+        },
+        [sizes.down("lg")]: {
+            width: "50%",
+            height: "20%"
+        },
+        [sizes.down("sm")]: {
+            width: "100%",
+            height: "10%"
         }
     }
 }

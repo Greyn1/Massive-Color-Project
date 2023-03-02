@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 export default {
     root: {
         backgroundColor: "white",
@@ -12,10 +14,13 @@ export default {
     },
     colors: {
         backgroundColor: "#dae1e4",
-        height: "130px",
+        height: "8rem",
         width: "100%",
         borderRadius: "5px",
-        overflow: "hidden"
+        overflow: "hidden",
+        [sizes.down("sm")]: {
+            height: "9rem"
+        }
     },
     title: {
         display: "flex",
@@ -26,7 +31,11 @@ export default {
         paddingTop: "0.3rem",
         paddingBottom: "1rem",
         fontSize: "0.85rem",
-        position: "relative"
+        position: "relative",
+        [sizes.down("md")]: {
+            fontSize: "0.75rem",
+            paddingBottom: "0.4rem",
+        }
     },
     emoji: {
         // marginLeft: "0.5rem",

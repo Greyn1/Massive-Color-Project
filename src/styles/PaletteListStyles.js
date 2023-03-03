@@ -8,7 +8,8 @@ export default {
         alignItems: "flex-start",
         justifyContent: "center",
         backgroundColor: "#591EFF",
-        backgroundImage: `url(${bg})`
+        backgroundImage: `url(${bg})`,
+        overflowY: "scroll"
     },
     container: {
         width: "50%",
